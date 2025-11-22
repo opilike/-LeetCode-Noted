@@ -28,6 +28,11 @@ class Solution {
         
         while (!pq.isEmpty()) {
             ListNode smallest = pq.poll();   //接到pq裡最小的(最有權重的)
+            //優化如果只剩一個list直接抓後面這一串，然後跳出迴圈。
+            if(pq.size() == 0){
+                cur.next = smallest;
+                break;
+            }
             cur.next = smallest;             //指針只到smallest
             cur = cur.next;                  //指針前進下一步
             // 如果list的下一項不為空，我們就在抓近來
